@@ -41,7 +41,11 @@ for record in tqdm(dataset):
 
     try:
         text = record['text']
-
+        url=record['url']
+        #urlフィルター
+        is_rejected=url_filter.u_filter(url)
+        if is_rejected==True:
+            continue
         # テキストクリーン
         text = clean_text(text)
         if text == "":
